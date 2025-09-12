@@ -1,0 +1,18 @@
+# Core Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Web Framework Dependencies
+jinja2==3.1.2
+python-multipart==0.0.6
+
+# AI/ML Dependencies
+torch>=2.0.0
+openai-whisper>=20231117
+
+# Utilities
+python-dotenv==1.0.0
+
+# Optional: For better performance
+# torch-audio  # If you need additional audio processing
+# accelerate   # For faster model loading

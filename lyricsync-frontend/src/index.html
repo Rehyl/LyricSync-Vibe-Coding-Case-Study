@@ -1,12 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
+    <title>LyricSync</title>
     <link rel="stylesheet" href="index.css" />
-  </head>
-  <body>
-    <h1>💖 Hello World!</h1>
-    <p>Welcome to your Electron application.</p>
-  </body>
+    </head>
+<body>
+
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="profile">
+                <img src="https://i.pravatar.cc/40" alt="User Avatar" class="avatar">
+            </div>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li class="active"><a href="#">Carica</a></li>
+                <li><a href="#">Le mie trascrizioni</a></li>
+                <li><a href="#">Impostazioni</a></li>
+                <li><a href="#">Aiuto</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="transcription-card">
+                <h1>Nuova Trascrizione</h1>
+
+                <div class="upload-area">
+                    <div class="upload-icon">🎤</div>
+                    <p>Trascina e rilascia file audio o fai clic per caricare</p>
+                </div>
+
+                <div class="form-section file-details">
+                    <div class="form-group">
+                        <label for="file-name">Nome File</label>
+                        <input type="text" id="file-name" value="Inglese">
+                    </div>
+                    <div class="form-group">
+                        <label for="language-variants">Identificazione varianti</label>
+                        <div class="select-container">
+                            <span>Inglese, Spagnolo, Francese, ecc.</span>
+                            <span class="arrow">></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                         <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section transcription-settings">
+                    <h2>Impostazioni Trascrizione</h2>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="timestamps">
+                        <label for="timestamps">Marcature temporali</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="punctuation">
+                        <label for="punctuation">Punteggiatura</label>
+                    </div>
+                    <button class="btn-primary">AVVIA TRASCRIZIONE</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
 </html>

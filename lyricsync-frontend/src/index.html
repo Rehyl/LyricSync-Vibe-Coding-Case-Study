@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="index.css" />
     </head>
 <body>
+<input type="file" id="file-input" style="display: none;">
 
     <div class="app-container">
         <nav class="sidebar">
@@ -52,6 +53,24 @@
 
                 <div class="form-section transcription-settings">
                     <h2>Impostazioni Trascrizione</h2>
+                    <div class="form-group">
+                        <label for="quality">Qualità</label>
+                        <select id="quality">
+                            <option value="fast">Veloce</option>
+                            <option value="balanced" selected>Bilanciata</option>
+                            <option value="high">Alta</option>
+                            <option value="best">Migliore</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="model-size">Modello</label>
+                        <select id="model-size">
+                            <option value="">Predefinito</option>
+                            <option value="small">Piccolo</option>
+                            <option value="medium">Medio</option>
+                            <option value="large-v3">Grande</option>
+                        </select>
+                    </div>
                     <div class="checkbox-group">
                         <input type="checkbox" id="timestamps">
                         <label for="timestamps">Marcature temporali</label>
@@ -60,6 +79,10 @@
                         <input type="checkbox" id="punctuation">
                         <label for="punctuation">Punteggiatura</label>
                     </div>
+<div id="transcription-result" class="transcription-result" style="display: none;">
+  <h3>Trascrizione:</h3>
+  <p id="transcription-text"></p>
+</div>
                     <button class="btn-primary">AVVIA TRASCRIZIONE</button>
                 </div>
 
@@ -67,5 +90,6 @@
         </main>
     </div>
 
+    <script src="renderer.js"></script>
 </body>
 </html>

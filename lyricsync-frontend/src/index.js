@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
+
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -28,6 +29,42 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
+
+  // Handle transcription requests from renderer process
+  ipcMain.on('transcription-request', async (event, fileName, buffer, quality, modelSize) => {
+    try {
+      // Use standard FormData and Blob
+      const formData = new FormData();
+      const blob = new Blob([buffer]);
+
+      // Append the file as a blob
+      formData.append('file', blob, fileName);
+      
+      // Append other form fields
+      formData.append('quality', quality);
+      formData.append('model_size', modelSize || '');
+
+      // Make API call to backend, letting fetch set the headers
+      const response = await fetch('http://localhost:8001/transcribe', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ detail: response.statusText }));
+        throw new Error(`HTTP error! status: ${response.status} - ${errorData.detail || 'Unknown error'}`);
+      }
+
+      const data = await response.json();
+      
+      // Send response back to renderer process
+      event.reply('transcription-response', data);
+    } catch (error) {
+      console.error('Transcription request failed:', error);
+      // Send error back to renderer process
+      event.reply('transcription-error', { message: error.message });
+    }
+  });
 
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.

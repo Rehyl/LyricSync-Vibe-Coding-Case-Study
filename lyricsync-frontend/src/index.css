@@ -146,7 +146,7 @@ h2 {
     color: var(--text-secondary);
 }
 
-input[type="text"], .select-container {
+input[type="text"], select, .select-container {
     width: 100%;
     background-color: var(--bg-dark);
     border: 1px solid var(--border-color);
@@ -230,8 +230,25 @@ input:checked + .slider:before {
 /* --- Impostazioni Trascrizione --- */
 .transcription-settings {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1.5rem;
+}
+
+.transcription-settings .form-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.transcription-settings select {
+    width: 100%;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    color: var(--text-main);
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .transcription-settings h2 {

@@ -118,12 +118,8 @@ class WhisperModelManager(ModelManager):
             selected_model = quality_models.get(quality, "base")
         
         if selected_model != self._model_size:
-            self.logger.info(f"Loading {selected_model} model for {quality.value} quality")
-            try:
-                return whisper.load_model(selected_model, device=self._device)
-            except Exception as e:
-                self.logger.warning(f"Failed to load {selected_model} model, using default: {e}")
-                return self._model
+            self.logger.info(f"Switching to {selected_model} model for {quality.value} quality")
+            return self.load_model(selected_model)
         
         return self._model
     
